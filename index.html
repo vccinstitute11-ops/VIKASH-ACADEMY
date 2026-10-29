@@ -1,403 +1,848 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vikash Academy - Shaping Futures Since 2003</title>
+    <title>Vikash Academy - Bokaro Steel City</title>
+    
+    <!-- Google Fonts For Attractive Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Rowdies:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-        
-        /* वॉटरमार्क (log.jpg) को बैकग्राउंड के बीच में जोड़ने के लिए स्टाइल */
-        body { 
-            line-height: 1.6; 
-            color: #333; 
-            background-color: #f9f9f9;
-            background-image: url('log.jpg');
-            background-repeat: no-repeat;
-            background-position: center 60%;
-            background-attachment: fixed;
-            background-size: 400px;
+        /* Modern CSS Variables & Reset */
+        :root {
+            --primary: #1e3a8a;
+            --primary-light: #2563eb;
+            --accent: #ff6b6b;
+            --accent-yellow: #ffd166;
+            --text-dark: #1e293b;
+            --text-light: #f8fafc;
+            --bg-light: #f1f5f9;
+            --gradient: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            --gold-gradient: linear-gradient(135deg, #ffe066 0%, #f59f00 100%);
+            --btn-gradient: linear-gradient(90deg, #ff6b6b 0%, #ff8e8e 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Top Announcement Ticker Bar with custom Colored Patti */
+        .ticker-wrap {
+            width: 100%;
+            background: linear-gradient(90deg, #d90429 0%, #ef233c 50%, #d90429 100%);
+            color: white;
+            padding: 10px 0;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            border-bottom: 3px solid var(--accent-yellow);
+        }
+
+        .ticker {
+            display: flex;
+            white-space: nowrap;
+            animation: marquee 25s linear infinite;
+        }
+
+        .ticker-item {
+            display: inline-block;
+            padding: 0 2rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .ticker-item i {
+            color: var(--accent-yellow);
+            margin-right: 8px;
+        }
+
+        @keyframes marquee {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-50%, 0, 0); }
+        }
+
+        /* Navigation Header */
+        header {
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 20px;
+        }
+
+        /* Attractive Brand Styling */
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            height: 65px;
+            width: 65px;
+            object-fit: contain;
+            border-radius: 50%;
+            border: 3px solid var(--primary-light);
+            box-shadow: 0 4px 10px rgba(37, 99, 235, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .brand:hover .logo-img {
+            transform: rotate(360deg);
+        }
+
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand-name {
+            font-family: 'Rowdies', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #1e3a8a, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.1));
+        }
+
+        .brand-tagline {
+            font-size: 0.8rem;
+            color: #64748b;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: -4px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #475569;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.3s;
             position: relative;
+            padding: 5px 0;
         }
-        
-        /* वॉटरमार्क को हल्का और पारदर्शी (Transparent) बनाने के लिए सुपर कोडिंग */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(249, 249, 249, 0.93); /* यह आपके वॉटरमार्क को हल्का रखेगा ताकि टेक्स्ट साफ पढ़े */
-            z-index: -1;
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+            border-radius: 2px;
         }
-        
-        /* 1. Scrolling News Bar (स्पीड को 55s करके धीमा किया गया है) */
-        .news-ticker { background-color: #ffcc00; color: #0b2265; font-weight: bold; padding: 8px 0; overflow: hidden; position: relative; display: flex; align-items: center; border-bottom: 2px solid #0b2265; }
-        .ticker-title { background: #0b2265; color: #fff; padding: 8px 20px; position: absolute; left: 0; top: 0; z-index: 10; font-size: 14px; box-shadow: 3px 0 5px rgba(0,0,0,0.2); }
-        .ticker-text { display: inline-block; white-space: nowrap; padding-left: 100%; animation: marquee 55s linear infinite; }
-        @keyframes marquee { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-100%, 0, 0); } }
-        .ticker-text span { margin-right: 60px; font-size: 15px; }
 
-        header { background-color: #0b2265; color: white; padding: 15px 5%; position: sticky; top: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
-        
-        .logo-container { display: flex; align-items: center; gap: 15px; }
-        .logo-image { width: 60px; height: 60px; background-color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden; border: 2px solid #ffcc00; }
-        .logo-image img { width: 100%; height: 100%; object-fit: cover; }
-        .logo-text h1 { font-size: 36px; letter-spacing: 1.5px; line-height: 1.1; font-weight: 800; color: #ffffff; }
-        .logo-text span { font-size: 14px; display: block; color: #ffcc00; font-weight: bold; margin-top: 4px; letter-spacing: 1px; }
-        
-        nav ul { display: flex; list-style: none; }
-        nav ul li { margin-left: 20px; }
-        nav ul li a { color: white; text-decoration: none; font-weight: 600; transition: color 0.3s; }
-        nav ul li a:hover { color: #ffcc00; }
-        
-        .hero { background: linear-gradient(rgba(11, 34, 101, 0.9), rgba(11, 34, 101, 0.9)); color: white; text-align: center; padding: 100px 20px; border-bottom: 5px solid #ffcc00; }
-        .hero h2 { font-size: 42px; margin-bottom: 10px; }
-        .hero p { font-size: 18px; margin-bottom: 25px; color: #ffcc00; }
-        .cta-btn { background-color: #ffcc00; color: #0b2265; padding: 12px 30px; text-decoration: none; font-weight: bold; border-radius: 5px; transition: transform 0.2s; display: inline-block; }
-        .cta-btn:hover { transform: scale(1.05); background-color: #e6b800; }
-        
-        section { padding: 60px 5%; position: relative; }
-        .section-title { text-align: center; margin-bottom: 40px; font-size: 28px; color: #0b2265; position: relative; }
-        .section-title::after { content: ''; display: block; width: 50px; height: 3px; background-color: #ffcc00; margin: 10px auto 0; }
-        .about-content { max-width: 800px; margin: 0 auto; text-align: center; font-size: 17px; }
-        
-        /* 6 कोर्सेज ग्रिड डिज़ाइन */
-        .courses-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-        .course-card { background: white; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.08); overflow: hidden; transition: transform 0.3s; border-top: 4px solid #0b2265; display: flex; flex-direction: column; }
-        .course-card:hover { transform: translateY(-5px); }
-        
-        .course-design-box { width: 100%; height: 140px; background: linear-gradient(135deg, #0b2265, #1d4ed8); overflow: hidden; display: flex; align-items: center; justify-content: center; }
-        .course-design-box img { width: 100%; height: 100%; object-fit: cover; opacity: 0.9; transition: 0.3s; }
-        .course-card:hover .course-design-box img { transform: scale(1.05); opacity: 1; }
-        
-        .course-info { padding: 20px; flex-grow: 1; background: #fff; }
-        .course-info h3 { color: #0b2265; margin-bottom: 10px; font-size: 20px; }
-        
-        .teachers-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 25px; margin-top: 20px; }
-        .teacher-card { background: white; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.06); text-align: center; padding: 20px; border-bottom: 4px solid #ffcc00; transition: 0.3s; }
-        .teacher-card:hover { transform: translateY(-3px); box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
-        .teacher-img-box { width: 120px; height: 120px; border-radius: 50%; margin: 0 auto 15px; overflow: hidden; border: 3px solid #0b2265; background-color: #eee; }
-        .teacher-img-box img { width: 100%; height: 100%; object-fit: cover; }
-        .teacher-card h3 { color: #0b2265; font-size: 18px; margin-bottom: 4px; }
-        .teacher-card p { color: #e6b800; font-weight: bold; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; }
+        nav ul li a:hover::after {
+            width: 100%;
+        }
 
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .gallery-item { background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border: 1px solid #eee; }
-        .gallery-item img { width: 100%; height: 200px; object-fit: cover; display: block; transition: 0.3s; }
-        .gallery-item img:hover { transform: scale(1.03); }
-        .gallery-caption { padding: 12px; font-weight: 600; text-align: center; color: #0b2265; font-size: 15px; }
+        nav ul li a:hover {
+            color: var(--primary-light);
+        }
 
-        .youtube-section { background: linear-gradient(135deg, #e52d27, #b31217); color: white; text-align: center; padding: 50px 5%; border-radius: 12px; margin: 30px 0; }
-        .youtube-content h2 { font-size: 32px; margin-bottom: 10px; }
-        .youtube-content p { font-size: 18px; margin-bottom: 20px; opacity: 0.9; }
-        .yt-btn { background-color: white; color: #b31217; padding: 12px 35px; text-decoration: none; font-weight: bold; border-radius: 30px; display: inline-block; font-size: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); transition: 0.3s; }
-        .yt-btn:hover { background-color: #ffcc00; color: #0b2265; transform: scale(1.05); }
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(30, 58, 138, 0.88), rgba(59, 130, 246, 0.85)), url('institute1.jpg') no-repeat center center/cover;
+            background-blend-mode: overlay;
+            padding: 100px 20px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
 
-        .contact-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; max-width: 1000px; margin: 0 auto; }
-        .contact-info { background-color: #0b2265; color: white; padding: 30px; border-radius: 8px; }
-        .contact-info h3 { margin-bottom: 20px; color: #ffcc00; }
-        .contact-info p { margin-bottom: 15px; font-size: 16px; }
-        .contact-form { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
-        .form-group { margin-bottom: 15px; }
-        .form-group label { display: block; margin-bottom: 5px; font-weight: 600; }
-        .form-group input, .form-group textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; }
-        .submit-btn { background-color: #0b2265; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; width: 100%; }
-        .submit-btn:hover { background-color: #123393; }
-        footer { background-color: #111; color: white; text-align: center; padding: 20px; margin-top: 40px; font-size: 14px; }
-        @media (max-width: 768px) { header { flex-direction: column; text-align: center; gap: 15px; } nav ul { margin-top: 5px; } nav ul li { margin: 0 10px; } .logo-text h1 { font-size: 28px; } }
+        .hero::before {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: var(--bg-light);
+            transform: skewY(-2deg);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            animation: fadeInDown 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            color: #e2e8f0;
+            animation: fadeInUp 1s ease;
+        }
+
+        .btn-cta {
+            display: inline-block;
+            padding: 15px 40px;
+            background: var(--btn-gradient);
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            box-shadow: 0 10px 25px rgba(255, 107, 107, 0.4);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            border: 2px solid transparent;
+        }
+
+        .btn-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(255, 107, 107, 0.5);
+            background: white;
+            color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        /* Container & Titles */
+        .container {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary);
+            position: relative;
+            margin-bottom: 50px;
+            font-weight: 700;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about-box {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-left: 6px solid var(--primary-light);
+            text-align: center;
+        }
+
+        .about-box p {
+            font-size: 1.1rem;
+            color: #475569;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Courses Section */
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .course-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.04);
+            transition: all 0.3s ease;
+            border-top: 5px solid var(--primary-light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(37, 99, 235, 0.02);
+            pointer-events: none;
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+        }
+
+        .course-card:hover::before {
+            transform: translateY(0);
+        }
+
+        .course-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .course-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .course-card h3 {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+
+        .course-card p {
+            color: #64748b;
+            font-size: 0.95rem;
+        }
+
+        /* Faculty Section */
+        .faculty-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+        }
+
+        .faculty-card {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.04);
+            border: 1px solid #e2e8f0;
+            transition: transform 0.3s;
+        }
+
+        .faculty-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        }
+
+        .faculty-img {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 4px solid var(--bg-light);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .faculty-card h3 {
+            font-size: 1.15rem;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .faculty-card p {
+            font-size: 0.85rem;
+            color: #64748b;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        /* YouTube Promo Banner */
+        .youtube-banner {
+            background: linear-gradient(135deg, #ff0000 0%, #b30000 100%);
+            color: white;
+            padding: 50px 30px;
+            border-radius: 24px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(255, 0, 0, 0.3);
+            margin: 60px auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .youtube-banner h2 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .youtube-banner p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            color: #ffcccc;
+        }
+
+        .btn-youtube {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 35px;
+            background: white;
+            color: #ff0000;
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            text-transform: uppercase;
+        }
+
+        .btn-youtube:hover {
+            transform: scale(1.05);
+            background: #ffd6d6;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        /* Life at Academy / Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            height: 220px;
+            border: 4px solid white;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(transparent, rgba(0,0,0,0.85));
+            color: white;
+            padding: 15px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        /* Contact Section */
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .contact-info {
+            background: var(--primary);
+            color: white;
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(30, 58, 138, 0.15);
+        }
+
+        .contact-info h2 {
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .info-item i {
+            font-size: 1.3rem;
+            color: var(--accent-yellow);
+            margin-top: 5px;
+        }
+
+        .info-item p {
+            font-size: 1rem;
+            color: #cbd5e1;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+            border: 1px solid #e2e8f0;
+        }
+
+        .contact-form h2 {
+            margin-bottom: 25px;
+            color: var(--primary);
+            font-size: 1.8rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: var(--primary-light);
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 14px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            font-weight: 700;
+            font-size: 1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.3s;
+            text-transform: uppercase;
+        }
+
+        .btn-submit:hover {
+            background: var(--primary-light);
+        }
+
+        /* Footer */
+        footer {
+            background: #0f172a;
+            color: #94a3b8;
+            padding: 30px 20px;
+            text-align: center;
+            border-top: 4px solid var(--primary-light);
+            font-size: 0.9rem;
+        }
+
+        footer p i {
+            color: var(--accent);
+        }
+
+        /* Keyframe Animations */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 768px) {
+            .nav-container { flex-direction: column; gap: 15px; text-align: center; }
+            .brand-name { font-size: 1.8rem; }
+            .hero h1 { font-size: 2.4rem; }
+            .hero p { font-size: 1rem; }
+            nav ul { gap: 15px; flex-wrap: wrap; justify-content: center; }
+        }
     </style>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </head>
 <body>
 
-    <!-- 1. न्यूज़ पट्टी - सभी 6 कोर्सेज के आकर्षक संदेशों के साथ -->
-    <div class="news-ticker">
-        <div class="ticker-title">Latest Updates</div>
-        <div class="ticker-text">
-            <span>💻 **Computer Class:** Learn C, C++, Java, Python, Tally GST & MS Office with 100% Practical Training!</span>
-            <span>📊 **Commerce Class:** Special Batches for Accountancy, Business Studies & Economics (11th & 12th Board)!</span>
-            <span>🧮 **Abacus Class:** Sharpen Mental Math Calculations & Boost Brain Concentration for Kids!</span>
-            <span>📚 **Tuition Class:** Expert Guidance and Complete Subject Preparation from Nursery to Class 10th!</span>
-            <span>🎨 **Drawing Class:** Unleash Creativity through Sketching, Oil Pastels & Fundamental Fine Arts!</span>
-            <span>🎯 **Competition Class:** Crack Competitive Exams with Smart Shortcut Tricks & Regular Mock Tests!</span>
-            <span>🔥 Admission Open at Vikash Academy! Special Discounts for New Enrollments! Register Today!</span>
+    <!-- Top Running Text/Colored Patti Section -->
+    <div class="ticker-wrap">
+        <div class="ticker">
+            <!-- First Set -->
+            <div class="ticker-item"><i class="fa-solid fa-laptop-code"></i> कंप्यूटर क्लास: C, C++, Java, Python, Tally GST & MS Office 100% प्रैक्टिकल!</div>
+            <div class="ticker-item"><i class="fa-solid fa-chart-bar"></i> कॉमर्स क्लास: 11वीं और 12वीं बोर्ड स्पेशल (Accountancy, BST, Economics)!</div>
+            <div class="ticker-item"><i class="fa-solid fa-calculator"></i> एबाकस क्लास: बच्चों के लिए मेंटल मैथ कैलकुलेशन और ब्रेन बूस्टर!</div>
+            <div class="ticker-item"><i class="fa-solid fa-book-open"></i> ट्यूशन क्लासेज: नर्सरी से 10वीं कक्षा तक संपूर्ण तैयारी!</div>
+            <div class="ticker-item"><i class="fa-solid fa-bullseye"></i> कॉम्पिटिशन क्लास: शॉर्टकट ट्रिक्स और मॉक टेस्ट के साथ सरकारी परीक्षाओं की तैयारी!</div>
+            <div class="ticker-item"><i class="fa-solid fa-fire"></i> एडमिशन ओपन: नए नामांकनों के लिए विशेष छूट! आज ही रजिस्टर करें!</div>
+            <!-- Duplicate Set for Endless Loop Effect -->
+            <div class="ticker-item"><i class="fa-solid fa-laptop-code"></i> कंप्यूटर क्लास: C, C++, Java, Python, Tally GST & MS Office 100% प्रैक्टिकल!</div>
+            <div class="ticker-item"><i class="fa-solid fa-chart-bar"></i> कॉमर्स क्लास: 11वीं और 12वीं बोर्ड स्पेशल (Accountancy, BST, Economics)!</div>
+            <div class="ticker-item"><i class="fa-solid fa-calculator"></i> एबाकस क्लास: बच्चों के लिए मेंटल मैथ कैलकुलेशन और ब्रेन बूस्टर!</div>
+            <div class="ticker-item"><i class="fa-solid fa-book-open"></i> ट्यूशन क्लासेज: नर्सरी से 10वीं कक्षा तक संपूर्ण तैयारी!</div>
+            <div class="ticker-item"><i class="fa-solid fa-bullseye"></i> कॉम्पिटिशन क्लास: शॉर्टकट ट्रिक्स और मॉक टेस्ट के साथ सरकारी परीक्षाओं की तैयारी!</div>
+            <div class="ticker-item"><i class="fa-solid fa-fire"></i> एडमिशन ओपन: नए नामांकनों के लिए विशेष छूट! आज ही रजिस्टर करें!</div>
         </div>
     </div>
 
-    <!-- Header -->
+    <!-- Header Navigation Section -->
     <header>
-        <div class="logo-container">
-            <div class="logo-image">
-                <img src="log.jpg" alt="Logo" onerror="this.style.display='none'; this.parentNode.innerHTML='<span style=\'color:#0b2265;font-weight:bold;font-size:12px;\'>LOGO</span>';">
-            </div>
-            <div class="logo-text">
-                <h1>VIKASH ACADEMY</h1>
-                <span>SINCE 2003 | Near Inspector Block, Sector-XI C, Bokaro Steel City</span>
-            </div>
+        <div class="nav-container">
+            <a href="#" class="brand">
+                <img src="log.jpg" alt="Vikash Academy Logo" class="logo-img">
+                <div class="brand-text">
+                    <span class="brand-name">Vikash Academy</span>
+                    <span class="brand-tagline">Since 2003 | Bokaro Steel City</span>
+                </div>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#courses">Courses</a></li>
+                    <li><a href="#team">Our Team</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
         </div>
-        <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About Us</a></li>
-                <li><a href="#courses">Courses</a></li>
-                <li><a href="#teachers">Our Team</a></li>
-                <li><a href="#gallery">Gallery</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
     </header>
 
-    <!-- Hero Section -->
-    <div class="hero" id="home">
-        <h2>Empowering Minds, Shaping Futures</h2>
-        <p>Over 20+ Years of Educational Excellence in Bokaro</p>
-        <a href="#contact" class="cta-btn">Admission Open - Enquire Now</a>
-    </div>
+    <!-- Hero Showcase Section -->
+    <section class="hero" id="home">
+        <h1>Empowering Minds, Shaping Futures</h1>
+        <p>Over 20+ Years of Educational Excellence in Bokaro Steel City. Join India's trusted temple of learning.</p>
+        <a href="#contact" class="btn-cta">Admission Open - Enquire Now</a>
+    </section>
 
     <!-- About Section -->
-    <section id="about">
+    <section class="container" id="about">
         <h2 class="section-title">About Us</h2>
-        <div class="about-content">
+        <div class="about-box">
             <p>Welcome to <strong>Vikash Academy</strong>, a premier educational institution located in Bokaro. Established in <strong>2003</strong>, we have been dedicated to providing quality education, IT skills, programming foundations, vocational guidance, and core subject coaching for more than two decades. Our expert faculty and student-centric approach ensure strong foundations and excellent performance.</p>
         </div>
     </section>
 
-
-
-
-
-
-
-
     <!-- Courses Section -->
-    <section id="courses" style="background-color: #f0f4f8;">
-        <h2 class="section-title">Our Courses</h2>
+    <section class="container" id="courses">
+        <h2 class="section-title">Our Specialized Courses</h2>
         <div class="courses-grid">
-            
-            <!-- Commerce -->
             <div class="course-card">
-                <div class="course-design-box">
-                    <!-- बिना इंटरनेट के चलने वाला आकर्षक डिज़ाइन -->
-                    <div style="font-size: 55px; color: #ffcc00; font-weight: bold; text-shadow: 2px 2px 5px rgba(0,0,0,0.4);">📊</div>
-                </div>
-                <div class="course-info">
-                    <h3>Commerce Class</h3>
-                    <p>In-depth coaching for Accountancy, Business Studies, and Economics to score top marks.</p>
-                </div>
+                <div class="course-icon">📊</div>
+                <h3>Commerce Class</h3>
+                <p>In-depth coaching for Accountancy, Business Studies, and Economics to score top marks in 11th & 12th Board Exams.</p>
             </div>
-
-            <!-- Computer -->
             <div class="course-card">
-                <div class="course-design-box">
-                    <div style="font-size: 55px; color: #ffcc00; font-weight: bold; text-shadow: 2px 2px 5px rgba(0,0,0,0.4);">💻</div>
-                </div>
-                <div class="course-info">
-                    <h3>Computer Class</h3>
-                    <p>Learn essential IT skills, programming foundations (C, C++, Java, Python), MS Office, and Tally GST.</p>
-                </div>
+                <div class="course-icon">💻</div>
+                <h3>Computer Class</h3>
+                <p>Learn essential IT skills, core programming foundations (C, C++, Java, Python), MS Office, and professional Tally GST.</p>
             </div>
-
-            <!-- Abacus -->
             <div class="course-card">
-                <div class="course-design-box">
-                    <div style="font-size: 55px; color: #ffcc00; font-weight: bold; text-shadow: 2px 2px 5px rgba(0,0,0,0.4);">🧮</div>
-                </div>
-                <div class="course-info">
-                    <h3>Abacus Class</h3>
-                    <p>Boost your child's brain development, improve concentration, and master fast mental calculations.</p>
-                </div>
+                <div class="course-icon">🧮</div>
+                <h3>Abacus Class</h3>
+                <p>Boost your child's brain development, improve concentration power, and master blazing-fast mental math calculations.</p>
             </div>
-
-            <!-- Tuition -->
             <div class="course-card">
-                <div class="course-design-box">
-                    <div style="font-size: 55px; color: #ffcc00; font-weight: bold; text-shadow: 2px 2px 5px rgba(0,0,0,0.4);">📚</div>
-                </div>
-                <div class="course-info">
-                    <h3>Tuition Class (NUR to 10)</h3>
-                    <p>Comprehensive subject coverage and daily academic guidance tailored for school students.</p>
-                </div>
+                <div class="course-icon">📚</div>
+                <h3>Tuition Class (NUR to 10)</h3>
+                <p>Comprehensive subject coverage, daily school homework assistance, and strict academic guidance tailored for young students.</p>
             </div>
-
-            <!-- Drawing -->
             <div class="course-card">
-                <div class="course-design-box">
-                    <div style="font-size: 55px; color: #ffcc00; font-weight: bold; text-shadow: 2px 2px 5px rgba(0,0,0,0.4);">🎨</div>
-                </div>
-                <div class="course-info">
-                    <h3>Drawing Class</h3>
-                    <p>Unleash creativity through sketching, coloring, and fundamental art techniques for all ages.</p>
-                </div>
+                <div class="course-icon">🎨</div>
+                <h3>Drawing Class</h3>
+                <p>Unleash creative potential through neat sketching, oil pastels shading, coloring, and fundamental fine art techniques.</p>
             </div>
-
-            <!-- Competition -->
             <div class="course-card">
-                <div class="course-design-box">
-                    <div style="font-size: 55px; color: #ffcc00; font-weight: bold; text-shadow: 2px 2px 5px rgba(0,0,0,0.4);">🎯</div>
-                </div>
-                <div class="course-info">
-                    <h3>Competition Class</h3>
-                    <p>Specialized coaching for competitive exams with regular tests, shortcut tricks, and expert guidance.</p>
-                </div>
+                <div class="course-icon">🎯</div>
+                <h3>Competition Class</h3>
+                <p>Specialized regular coaching for competitive exams with advanced shortcut tricks, speed formulas, and periodic mock tests.</p>
             </div>
-
         </div>
     </section>
 
-    <!-- Teachers Section (आपकी सुधारी हुई फैकल्टी लिस्ट के साथ) -->
-    <section id="teachers">
+    <!-- Faculty Team Section -->
+    <section class="container" id="team">
         <h2 class="section-title">Meet Our Expert Faculty</h2>
-        <div class="teachers-grid">
-            <div class="teacher-card">
-                <div class="teacher-img-box"><img src="director.jpg" data-variants="Director.jpg,director.png,Director.png,director.jpeg,Director.jpeg" alt="Director Sir" class="auto-fix-img"></div>
-                <h3>Director Sir (R.K. SHUKLA)</h3>
+        <div class="faculty-grid">
+            <div class="faculty-card">
+                <img src="director.jpeg" alt="R.K. Shukla" class="faculty-img">
+                <h3>R.K. Shukla</h3>
                 <p>Director / Management</p>
             </div>
-            <div class="teacher-card">
-                <div class="teacher-img-box"><img src="vikash.jpg" data-variants="Vikash.jpg,vikash.png,Vikash.png,vikash.jpeg,Vikash.jpeg,vikash.PNG" alt="Vikash Sir" class="auto-fix-img"></div>
+            <div class="faculty-card">
+                <img src="vikash.jpeg" alt="Jitendra Sir" class="faculty-img">
                 <h3>Jitendra Sir</h3>
-                <p>Head Computer & ABACUS Faculty</p>
+                <p>Head Computer & ABACUS</p>
             </div>
-            <div class="teacher-card">
-                <div class="teacher-img-box"><img src="bibha.jpg" data-variants="Bibha.jpg,bibha.png,Bibha.png,bibha.jpeg,Bibha.jpeg,bibha.PNG" alt="Bibha Mam" class="auto-fix-img"></div>
+            <div class="faculty-card">
+                <img src="gautam sir.jpg" alt="Gautam Sir" class="faculty-img">
+                <h3>Gautam Sir</h3>
+                <p>Faculty Member</p>
+            </div>
+            <div class="faculty-card">
+                <img src="bibha.jpeg" alt="Bibha Mam" class="faculty-img">
                 <h3>Bibha Mam</h3>
                 <p>Faculty Member</p>
             </div>
-            <div class="teacher-card">
-                <div class="teacher-img-box"><img src="sneha.jpg" data-variants="Sneha.jpg,sneha.png,Sneha.png,sneha.jpeg,Sneha.jpeg" alt="Sneha Mam" class="auto-fix-img"></div>
+            <div class="faculty-card">
+                <img src="sneha.jpeg" alt="Sneha Mam" class="faculty-img">
                 <h3>Sneha Mam</h3>
                 <p>Faculty Member</p>
             </div>
-            <div class="teacher-card">
-                <div class="teacher-img-box"><img src="nkpandey.jpg" data-variants="Nkpandey.jpg,nkpandey.png,Nkpandey.png,nkpandey.jpeg" alt="N.K. Pandey Sir" class="auto-fix-img"></div>
+            <div class="faculty-card">
+                <img src="nkpandey.jpeg" alt="N.K. Pandey Sir" class="faculty-img">
                 <h3>N.K. Pandey Sir</h3>
                 <p>Senior Faculty</p>
             </div>
-            <div class="teacher-card">
-                <div class="teacher-img-box"><img src="bhaibhav.jpg" data-variants="Bhaibhav.jpg,bhaibhav.png,Bhaibhav.png,bhaibhav.jpeg" alt="Bhaibhav Sir" class="auto-fix-img"></div>
+            <div class="faculty-card">
+                <img src="bhaibhav.jpeg" alt="Bhaibhav Sir" class="faculty-img">
                 <h3>Bhaibhav Sir</h3>
                 <p>Faculty Member</p>
             </div>
-            <div class="teacher-card">
-                <div class="teacher-img-box"><img src="rohit.jpg" data-variants="Rohit.jpg,rohit.png,Rohit.png" alt="Rohit Sir" class="auto-fix-img"></div>
-                <h3>Rohit Sir</h3>
-                <p>Faculty Member</p>
-            </div>
         </div>
     </section>
 
-
-
-
-
-
-
-
-
-
-    <!-- YouTube Section (आपके असली यूट्यूब लिंक के साथ) -->
-    <section style="padding: 20px 5%;">
-        <div class="youtube-section">
-            <div class="youtube-content">
-                <h2>📺 Learn Online With Us on YouTube</h2>
-                <p>Subscribe to our official channel <strong>Vikash Computer Classes</strong>. Access over 58+ video tutorials covering computer basics, tricks, and regular updates anytime, anywhere!</p>
-                <a href="http://youtube.com" target="_blank" class="yt-btn">Subscribe Our Channel</a>
-            </div>
+    <!-- Corrected YouTube Action Area -->
+    <section class="container">
+        <div class="youtube-banner">
+            <h2>📺 Learn Online With Us on YouTube</h2>
+            <p>Subscribe to our official channel <strong>Vikash Computer Classes</strong>. Access over 58+ video tutorials covering computer basics, smart tricks, and regular course updates anytime, anywhere!</p>
+            <a href="http://www.youtube.com/@vikashcomputerclasses6109" target="_blank" class="btn-youtube">
+                <i class="fa-brands fa-youtube"></i> Subscribe Our Channel
+            </a>
         </div>
     </section>
 
-    <!-- Gallery Section (आपकी सातों तस्वीरों के महा-बैकअप इंजन के साथ) -->
-    <section id="gallery" style="background-color: #f0f4f8;">
+    <!-- Campus Life & Students Gallery Section -->
+    <section class="container" id="gallery">
         <h2 class="section-title">Life at Vikash Academy</h2>
         <div class="gallery-grid">
-            <div class="gallery-item"><img src="institutue1.jpg" data-variants="institutue1.jpg.jpg,institute1.jpg,institute1.jpg.jpg,institutue1.png,institute1.png,institutue1.jpeg,institute1.jpeg,Institutue1.jpg" class="auto-fix-img" alt="Campus 1"><div class="gallery-caption">Our Campus Building</div></div>
-            <div class="gallery-item"><img src="institute2.jpg" data-variants="institute2.jpg.jpg,institute2.png,Institute2.jpg,institute2.jpeg,institute2.PNG" class="auto-fix-img" alt="Campus 2"><div class="gallery-caption">Smart Classroom Lab</div></div>
-            <div class="gallery-item"><img src="program.jpg" data-variants="program.jpg.jpg,program.png,Program.jpg,program.jpeg,program.PNG" class="auto-fix-img" alt="Event"><div class="gallery-caption">Special Academy Program</div></div>
-            <div class="gallery-item"><img src="student1.jpg" data-variants="student1.jpg.jpg,student1.png,Student1.jpg,student1.jpeg,student1.PNG" class="auto-fix-img" alt="Student 1"><div class="gallery-caption">Practical Practice Batch</div></div>
-            <div class="gallery-item"><img src="student2.jpg" data-variants="student2.jpg.jpg,student2.png,Student2.jpg,student2.jpeg,student2.PNG" class="auto-fix-img" alt="Student 2"><div class="gallery-caption">Student Interactive Class</div></div>
-            <div class="gallery-item"><img src="student3.jpg" data-variants="student3.jpg.jpg,student3.png,Student3.jpg,student3.jpeg,student3.PNG" class="auto-fix-img" alt="Student 3"><div class="gallery-caption">Daily Academic Tuition</div></div>
-            <div class="gallery-item"><img src="student4.jpg" data-variants="student4.jpg.jpg,student4.png,Student4.jpg,student4.jpeg,student4.PNG" class="auto-fix-img" alt="Student 4"><div class="gallery-caption">Student Merit Board & Test</div></div>
+            <div class="gallery-item">
+                <img src="institute1.jpg" alt="Our Campus Building">
+                <div class="gallery-caption">Our Campus Building</div>
+            </div>
+            <div class="gallery-item">
+                <img src="institute2.jpg" alt="Smart Classroom Lab">
+                <div class="gallery-caption">Smart Classroom Lab</div>
+            </div>
+            <div class="gallery-item">
+                <img src="program.jpg" alt="Special Academy Program">
+                <div class="gallery-caption">Special Academy Program</div>
+            </div>
+            <div class="gallery-item">
+                <img src="student1.jpg" alt="Practical Practice Batch">
+                <div class="gallery-caption">Practical Practice Batch</div>
+            </div>
+            <div class="gallery-item">
+                <img src="student2.jpg" alt="Student Interactive Class">
+                <div class="gallery-caption">Student Interactive Class</div>
+            </div>
+            <div class="gallery-item">
+                <img src="student3.jpg" alt="Daily Academic Tuition">
+                <div class="gallery-caption">Daily Academic Tuition</div>
+            </div>
+            <div class="gallery-item">
+                <img src="student4.jpg" alt="Student Merit Board & Test">
+                <div class="gallery-caption">Student Merit Board & Test</div>
+            </div>
         </div>
     </section>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <!-- Contact Section (आपके सुधारे हुए असली फोन नंबर और ईमेल के साथ) -->
-    <section id="contact">
+    <!-- Contact Section -->
+    <section class="container" id="contact">
         <h2 class="section-title">Contact Us</h2>
-        <div class="contact-container">
+        <div class="contact-wrapper">
             <div class="contact-info">
-                <h3>Get In Touch</h3>
-                <p><strong>📍 Address:</strong> Near Inspector Block, Sector-XI C, Bokaro Steel City, Jharkhand 827009</p>
-                <p><strong>📞 Phone:</strong> +91 9234609277 / 9608538969</p>
-                <p><strong>✉️ Email:</strong> vccinstitute11@gmail.com</p>
-                <p><strong>⏰ Hours:</strong> Monday - Saturday: 8:00 AM - 7:00 PM</p>
+                <h2>Get In Touch</h2>
+                <div class="info-item">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <div>
+                        <strong>Address:</strong>
+                        <p>Near Inspector Block, Sector-XI C, Bokaro Steel City, Jharkhand 827009</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fa-solid fa-phone"></i>
+                    <div>
+                        <strong>Phone:</strong>
+                        <p>+91 9234609277 / 9608538969</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fa-solid fa-envelope"></i>
+                    <div>
+                        <strong>Email:</strong>
+                        <p>vccinstitute11@gmail.com</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fa-solid fa-clock"></i>
+                    <div>
+                        <strong>Hours:</strong>
+                        <p>Monday - Saturday: 8:00 AM - 7:00 PM</p>
+                    </div>
+                </div>
             </div>
+            
             <div class="contact-form">
-                <form action="#" method="POST">
-                    <div class="form-group"><label for="name">Your Name</label><input type="text" id="name" name="name" required></div>
-                    <div class="form-group"><label for="email">Your Email/Phone</label><input type="text" id="email" name="email" required></div>
-                    <div class="form-group"><label for="message">Message/Course Inquiry</label><textarea id="message" name="message" rows="4" required></textarea></div>
-                    <button type="submit" class="submit-btn">Send Message</button>
+                <h2>Enquire Now</h2>
+                <form action="#">
+                    <div class="form-group">
+                        <input type="text" placeholder="आपका नाम (Your Name)" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="ईमेल आईडी (Email ID)">
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" placeholder="फ़ोन नंबर (Phone Number)" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea rows="4" placeholder="आपका संदेश (Your Message)" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit">Send Message</button>
                 </form>
             </div>
         </div>
     </section>
 
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2026 Vikash Academy. All Rights Reserved. | Designed with ❤️</p>
+        <p>© 2026 Vikash Academy. All Rights Reserved. | Designed with <i class="fa-solid fa-heart"></i> for Excellence.</p>
     </footer>
-
-    <!-- ऑटोमैटिक इमेज रिकवरी इंजन (JavaScript) -->
-    <script>
-        document.querySelectorAll('.auto-fix-img').forEach(function(img) {
-            img.onerror = function() {
-                var variants = img.getAttribute('data-variants');
-                if (variants) {
-                    var list = variants.split(',');
-                    var currentTry = img.getAttribute('data-try') || 0;
-                    currentTry = parseInt(currentTry);
-                    if (currentTry < list.length) {
-                        img.setAttribute('data-try', currentTry + 1);
-                        img.src = list[currentTry];
-                    } else {
-                        img.onerror = null;
-                        img.src = 'https://placeholder.com' + encodeURIComponent(img.alt);
-                    }
-                }
-            };
-        });
-    </script>
 
 </body>
 </html>
